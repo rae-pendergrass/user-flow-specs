@@ -50,7 +50,7 @@ Once installed, Claude loads the skill automatically when relevant (e.g. when yo
 | [SPEC-TEMPLATE.md](SPEC-TEMPLATE.md) | Copy this to start every new flow spec |
 | [REQUIREMENTS-TEMPLATE.md](REQUIREMENTS-TEMPLATE.md) | Copy this to define your project's requirements (specs trace back to these) |
 | [terminology.md](terminology.md) | Industry grounding — what this is, what it isn't, and the concepts it builds on |
-| [validate-flow-specs.js](validate-flow-specs.js) | A linter that catches structural issues, design smells, and coverage gaps |
+| [validate-flow-specs.js](validate-flow-specs.js) | A linter that catches structural issues, design issues, and coverage gaps |
 
 ## Getting started
 
@@ -66,10 +66,6 @@ Once installed, Claude loads the skill automatically when relevant (e.g. when yo
 
 ## The lifecycle
 
-```
-Requirements → Select & order flows → Draft → Human review → Feasibility check → Prototype → Audit
-```
-
 1. **Requirements** — Define the problem, the user, and numbered functional requirements (R1, R2, ...) using the requirements template.
 2. **Select & order** — Derive candidate flows from requirements. Prioritize by red routes: *frequency of use × consequence of failure*. Order matters — later specs build on earlier ones.
 3. **Draft** — One spec at a time, in order. Each spec traces to requirements via its `**Covers:** R#` line. Update the screen inventory (SCREENS.md) in the same pass.
@@ -82,7 +78,7 @@ See [SKILL.md](SKILL.md) for the full phase-by-phase instructions Claude follows
 
 ## More key concepts
 
-### The UI Stack (Scott Hurff)
+### The UI Stack
 
 Every key screen gets five states considered:
 
@@ -92,11 +88,11 @@ Every key screen gets five states considered:
 4. **Partial** — some data, not the full experience
 5. **Error** — something failed
 
-The Edge Cases table in each spec holds states 2-5. States that genuinely don't apply are fine to skip — the *consideration* is what's required.
+The Edge Cases table in each spec holds states 2-5. 
 
 ### Red routes
 
-The critical paths that deliver most of a product's value. Spec these first. For small teams or solo projects, score by *frequency of use × consequence of failure* — and if your user base is small enough to interview directly, do that rather than estimating.
+The critical paths that deliver most of a product's value. Spec these first. For small teams or solo projects, score by *frequency of use × consequence of failure*.
 
 Priority order: core loop(s) → first launch/onboarding → secondary paths → destructive/recovery paths.
 
@@ -106,29 +102,18 @@ Priority order: core loop(s) → first launch/onboarding → secondary paths →
 node validate-flow-specs.js path/to/flow-specs/
 ```
 
-The linter catches real design smells — happy-path-only thinking (no error/empty/loading states considered), solution-first framing (Goal line describes the UI instead of a user need), premature visual design in specs (the Altitude Rule), scope creep (too many steps in one flow). It also checks structural integrity: cross-references between specs, the screen inventory, the requirements doc, and the Flow Spec Index.
+The linter catches issues like happy-path-only thinking (no error/empty/loading states considered), solution-first framing (Goal line describes the UI instead of a user need), premature visual design in specs (the Altitude Rule), and scope creep (too many steps in one flow). It also checks structural integrity: cross-references between specs, the screen inventory, the requirements doc, and the Flow Spec Index.
 
 Findings are classified as:
 - **Issues** (exit code 1) — structural problems to fix
-- **Warnings** — design smells to consider (not commands)
+- **Warnings** — design issues to consider (not commands)
 - **Info** — context, never action-forcing
 
 If your project uses domain-specific terms for users (e.g. "member", "patient", "contributor"), add them to the actor regex in `validate-flow-specs.js` so the linter recognizes them.
 
-## Methodology roots
-
-| Ancestor | What we take from it |
-|---|---|
-| **User flow** (NN/g) | Scope: one task, one product, step by step |
-| **Use case, fully dressed** (Cockburn) | Structure: actor, trigger, numbered steps, extensions |
-| **Wireflow** (NN/g) | Per-step screen detail |
-| **Spec-driven development** | Lifecycle: write spec → generate → verify against spec |
-
-See [terminology.md](terminology.md) for the full mapping with sources.
-
 ## Background
 
-This methodology was developed through real-world use on multiple projects, refined through iterative AI-collaborative design practice. It was built for and tested in solo-user contexts, but the structure scales to any team size — the core insight (motivation before perception, spec before prototype, audit after prototype) is universal.
+This methodology was developed through real-world use on multiple projects, refined through iterative AI-collaborative design practice. It was built for and tested in solo-user contexts, but the structure scales to any team size. 
 
 ## Contributing
 

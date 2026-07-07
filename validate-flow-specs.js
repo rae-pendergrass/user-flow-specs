@@ -28,11 +28,11 @@
 //   I9  duplicate spec numbers across files
 //   I10 Edge Cases section has no table data row
 //
-// WARNINGS (design smells — consider, don't obey blindly):
+// WARNINGS (design issues — consider, don't obey blindly):
 //   W1  UI-Stack gap: no error-, empty-, or loading-state language anywhere
 //       in the spec (reported per missing state family)
 //   W2  >9 distinct main step numbers in one flow section — scope too broad?
-//   W3  Goal line names no actor — solution-first smell
+//   W3  Goal line names no actor — solution-first framing
 //   W4  lettered sub-step with no sibling (a 5a with no 5b)
 //   W5  step with only one 4-tuple label (legal but often a thin step)
 //   W6  ad-hoc metadata: "Verified YYYY" outside ## Verified, or supersession
@@ -234,7 +234,7 @@ function lintSpec(dir, s, numbersSeen) {
   // "patient", "contributor"), add them here so the linter recognizes them.
   const goalLine = lines.find(l => l.startsWith('**Goal:**'));
   if (goalLine && !/\b(user|users|they|she|he|designer|player|visitor|reader|creator|admin)\b/i.test(goalLine)) {
-    add(file, lines.indexOf(goalLine) + 1, 'warning', 'W3', 'Goal line names no actor — solution-first smell (state who wants what)');
+    add(file, lines.indexOf(goalLine) + 1, 'warning', 'W3', 'Goal line names no actor — solution-first framing (state who wants what)');
   }
 
   // I10 — Edge Cases table

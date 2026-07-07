@@ -156,7 +156,7 @@ node ${CLAUDE_SKILL_DIR}/validate-flow-specs.js <path-to-flow-specs-dir>
 
 Run it: after every draft · after every review-loop edit session · before any status change in the README · at audit start and end.
 
-The linter is **advisory**. Issues (exit 1) are format violations to fix before moving on; warnings are design-smell prompts (UI-Stack gaps, design language in specs, scope creep) to consider, not commands; info is context. It checks specs, the README index, SCREENS.md cross-references, and REQUIREMENTS.md coverage — see the script header for the full rule list.
+The linter is **advisory**. Issues (exit 1) are format violations to fix before moving on; warnings are design prompts (UI-Stack gaps, design language in specs, scope creep) to consider, not commands; info is context. It checks specs, the README index, SCREENS.md cross-references, and REQUIREMENTS.md coverage — see the script header for the full rule list.
 
 ---
 

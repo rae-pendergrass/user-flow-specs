@@ -48,7 +48,7 @@ Order: core loop(s) → first launch/onboarding → secondary paths → destruct
 
 ## Pitfalls the linter and rules guard against (NN/g + practice)
 
-| Pitfall | Smell | Our guard |
+| Pitfall | Sign | Our guard |
 |---|---|---|
 | Feature list in disguise | No single user goal driving the doc | Selection rule + `Covers:` traceability |
 | Happy-path-only thinking | Edge Cases empty or ideal-only | UI-Stack check, lint W-rules |
